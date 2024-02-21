@@ -1,3 +1,6 @@
+"""
+This python file was meant too sort all your files in your downloads to other folders to make things more organized.
+"""
 import os
 import shutil
 
