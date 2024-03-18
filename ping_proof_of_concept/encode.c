@@ -18,11 +18,14 @@ int main(int argc, char* argv[]){
 
         while(!feof(file)){
                 char byte = fgetc(file);
+                if(byte==255){
+                        break;
+                }
                 printf("%x",byte);
                 counter++;
 
 
-                if(counter%16==0){
+                if(counter%1==0){
                         printf("\n");
                 }
         }
